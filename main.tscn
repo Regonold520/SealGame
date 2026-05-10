@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdu1whn2wel7g"]
+
+[ext_resource type="Script" uid="uid://dx7em3xssj7tv" path="res://seal.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dsvxjnwo522cm" path="res://generation_manager.gd" id="2_0xm2m"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(1.99976, 0.001, 1.9978)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bvp3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lquwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+
+[node name="Main" type="Node3D"]
+
+[node name="TestHolder" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="TestHolder"]
+transform = Transform3D(4.84915, 0, 0, 0, 1, 0, 0, 0, 4.30023, 0, 0, 0)
+mesh = SubResource("PlaneMesh_0xm2m")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Main")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TestHolder/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestHolder/Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_h2yge")
+
+[node name="Seal" type="Node3D" parent="TestHolder"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="TestHolder/Seal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34971, 0)
+script = ExtResource("1_ig7tw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestHolder/Seal/CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_1bvp3")
+
+[node name="Model" type="Node3D" parent="TestHolder/Seal/CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestHolder/Seal/CharacterBody3D/Model"]
+mesh = SubResource("CapsuleMesh_lquwl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TestHolder/Seal/CharacterBody3D/Model"]
+transform = Transform3D(0.889281, 0, 0, 0, 0.226667, 0, 0, 0, 0.307649, 0, 0.526753, -0.395672)
+mesh = SubResource("BoxMesh_0xm2m")
+skeleton = NodePath("../..")
+
+[node name="CamAxis" type="Node3D" parent="TestHolder/Seal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34971, 0)
+
+[node name="Camera3D" type="Camera3D" parent="TestHolder/Seal/CamAxis"]
+transform = Transform3D(1, 0, 0, 0, 0.918591, 0.395209, 0, -0.395209, 0.918591, 0, 2.28539, 4.86124)
+
+[node name="Label3D" type="Label3D" parent="TestHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.40519, -7.12859)
+text = "Seal Game!"
+font_size = 442
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestHolder"]
+mesh = SubResource("ArrayMesh_h2yge")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Main")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.95874, 0.284283, 0, -0.284283, 0.95874, 0, 4.91774, 10.995)
+
+[node name="GenerationManager" type="Node3D" parent="."]
+script = ExtResource("2_0xm2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.429991, 0.902833, 0, -0.902833, -0.429991, -0.00239754, 12.6335, 0.0218911)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2yge")

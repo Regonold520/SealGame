@@ -1,0 +1,12 @@
+Node2D
+RichTextLabel
+Sprite2D
+ColorRect
+CanvasLayer
+Sprite3D
+CollisionShape3D
+StaticBody3D
+Marker3D
+Node3D
+MeshInstance3D
+AnimationTree

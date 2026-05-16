@@ -5,18 +5,44 @@ var chunks : Dictionary = {}
 @export var seed = 1
 var rng = RandomNumberGenerator.new()
 func  _ready() -> void:
-	for cX in 10:
-		for cY in 10:
+	
+	generateCaves()
+	pass
+	
+
+func generateCaves():
+	var n = FastNoiseLite.new()
+	var cSize = 10
+	var factor = 0.5
+	var baseHeight = 20
+	for cX in cSize:
+		for cY in cSize:
 			for x in 16:
 				for z in 16:
-					for y in 128:
-						var pick = "stone"
-						if rng.randi_range(0,1) == 0: pick = "stone2"
-						setBlock(cX, cY, Vector3i(x,y,z), pick)
+					var sX = round((x+cX*cSize) * factor) * (1 / factor)
+					var sZ = round((z+cY*cSize) * factor) * (1 / factor)
+					
+					var height = n.get_noise_2d(sX, sZ)
+					height = inverse_lerp(-1, 1, height)
+					height *= baseHeight 
+					print(height)
+					
+					for y in 64:
+						
+						
+						
+						
+						
+						
+						if y <= height:
+							setBlock(cX-(cSize/2), cY-(cSize/2), Vector3i(x,y + 64,z), "stone")
+						else:
+							setBlock(cX-(cSize/2), cY-(cSize/2), Vector3i(x,y + 64,z), "air")
+					var roofNoise = n.get_noise_2d((x + cX * 16)* 0.8, ( z + cY * 16)* 0.8) * 5
+					setBlock(cX-(cSize/2), cY-(cSize/2), Vector3i(x,0 + 64 + round(abs(roofNoise)),z), "stone")
+					setBlock(cX-(cSize/2), cY-(cSize/2), Vector3i(x,63 + 64 - round(abs(roofNoise)),z), "stone")
 			await get_tree().create_timer(0.001).timeout
-			buildChunkMesh(chunks[Vector2i(cX,cY)])
-			
-
+			buildChunkMesh(chunks[Vector2i(cX-(cSize/2),cY-(cSize/2))])
 
 func generateChunk(x, y):
 	var chunk = {}
@@ -56,12 +82,13 @@ var faces = {
 
 	"bottom": [
 		Vector3(0,0,0),
-		Vector3(1,0,1),
-		Vector3(1,0,0),
-
-		Vector3(0,0,0),
 		Vector3(0,0,1),
-		Vector3(1,0,1)
+		Vector3(1,0,1),
+		Vector3(0,0,0),
+		Vector3(1,0,1),
+		Vector3(1,0,0)
+
+		
 	],
 
 	"left": [
@@ -148,6 +175,7 @@ func buildChunkMesh(chunk):
 	
 func renderFace(st, pos, dir, blockId):
 	var f = faces[dir]
+	st.set_smooth_group(-1)
 
 	st.set_uv(get_uv(Vector2(0,0), blockId))
 	st.add_vertex(pos + f[0])
@@ -177,7 +205,28 @@ func get_uv(localUV: Vector2, blockId):
 		localUV.y
 	)
 
-func isAir(chunk,x,y,z):
-	if x < 0 or x >= 16 or y < 0 or y >= 128 or z < 0 or z >= 16:
+func isAir(chunk, x, y, z):
+	var chunkPos = chunk["pos"]
+
+	if y < 0 or y >= 128:
 		return true
+
+	if x < 0:
+		return getBlock(chunkPos.x - 1, chunkPos.y, 15, y, z) == 0
+
+	if x >= 16:
+		return getBlock(chunkPos.x + 1, chunkPos.y, 0, y, z) == 0
+
+	if z < 0:
+		return getBlock(chunkPos.x, chunkPos.y - 1, x, y, 15) == 0
+
+	if z >= 16:
+		return getBlock(chunkPos.x, chunkPos.y + 1, x, y, 0) == 0
+
 	return chunk["blocks"][x][y][z] == 0
+
+func getBlock(chunkX, chunkY, x, y, z):
+	if !chunks.has(Vector2i(chunkX, chunkY)):
+		return 0
+
+	return chunks[Vector2i(chunkX, chunkY)]["blocks"][x][y][z]

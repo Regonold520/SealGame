@@ -1,9 +1,15 @@
 extends CharacterBody3D
-
+class_name Seal
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var current_speed := 0.0
 
+@export var chest : Marker3D
+
+func _ready() -> void:
+	var pick = load("res://models/pick/pick.gltf").instantiate()
+	find_child("hand", true).add_child(pick)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -17,30 +23,48 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("Left", "Right", "Up", "Down")
 	var direction = ($"..".find_child("CamAxis", true).transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	print(direction)
-	if direction:
-		$Model.rotation.y = atan2(-direction.x, -direction.z)
+	if direction and !Ref.invManager.open:
+		$SealModel.rotation.y = lerp_angle(
+			$SealModel.rotation.y,
+			atan2(-direction.x, -direction.z),
+			delta * 15.0
+		)
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	
+	var target_speed = input_dir.length()
+	current_speed = lerp(current_speed, target_speed, delta * 10)
+	
+	if Ref.invManager.open:
+		current_speed = 0
+	
+	$SealModel/AnimationTree.set("parameters/BlendSpace1D/blend_position", current_speed)
 	move_and_slide()
 	var cam_axis = $"..".find_child("CamAxis")
 	
 	cam_axis.rotation.y = lerp_angle(
 		cam_axis.rotation.y,
-		target_rotation,
-		delta * 15.0
+		target_rotation.x,
+		delta * 25.0
 	)
 	
-	cam_axis.position = cam_axis.position.lerp(position, delta * 7.0)
+	cam_axis.rotation.x = lerp_angle(
+		cam_axis.rotation.x,
+		target_rotation.y,
+		delta * 25.0
+	)
+	
+	
+	
+	cam_axis.position = cam_axis.position.lerp(position, delta * 20.0)
 
 var dragging = false
 var drag_start_x = 0.0
 
-var target_rotation = 0.0
+var target_rotation = Vector2()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -51,5 +75,6 @@ func _input(event):
 				drag_start_x = event.position.x
 
 	elif event is InputEventMouseMotion and dragging:
-		target_rotation -= event.relative.x * 0.01
+		target_rotation.x -= event.relative.x * 0.01
+		target_rotation.y -= event.relative.y * 0.01
 		

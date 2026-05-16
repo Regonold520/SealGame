@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds0dvihw1584d"]
+
+[ext_resource type="Script" uid="uid://csttnsng3nec8" path="res://world_item.gd" id="1_t53tl"]
+[ext_resource type="Texture2D" uid="uid://bpjtcgog0bxo0" path="res://icon.svg" id="2_11hmn"]
+
+[node name="WorldItem" type="Node3D"]
+script = ExtResource("1_t53tl")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.037
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_11hmn")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://gkk74q71qimf"]
+
+[ext_resource type="Script" uid="uid://c5n7x2lj25egw" path="res://inventorySlot.gd" id="1_hiqfk"]
+[ext_resource type="Texture2D" uid="uid://b44bolxyvnaev" path="res://sprites/invSlot.png" id="1_khion"]
+[ext_resource type="FontFile" uid="uid://b77gneyev0w80" path="res://Gamer.ttf" id="3_hiqfk"]
+
+[node name="Slot" type="Node2D"]
+script = ExtResource("1_hiqfk")
+
+[node name="BG" type="Sprite2D" parent="."]
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
+texture = ExtResource("1_khion")
+
+[node name="Item" type="Sprite2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(6, 7)
+rotation = -0.0557128
+
+[node name="CountText" type="RichTextLabel" parent="Node2D"]
+z_index = 1
+texture_filter = 1
+clip_contents = false
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 35.0
+offset_bottom = 32.0
+scale = Vector2(0.101879, 0.101879)
+theme_override_colors/default_color = Color(0.903598, 0.903598, 0.903598, 1)
+theme_override_colors/font_outline_color = Color(0.122753, 0.129179, 0.110388, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("3_hiqfk")
+theme_override_font_sizes/normal_font_size = 160
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

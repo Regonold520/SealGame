@@ -1,7 +1,10 @@
-res://main.tscn
-res://generation_manager.gd
+res://slot.tscn
 res://models/seal/seal_model.tscn
 res://world_item.tscn
 res://coal.tscn
-res://slot.tscn
+res://main.tscn
+res://lift.gd
+res://storage_container.gd
+res://inventorySlot.gd
 res://References.gd
+res://generation_manager.gd

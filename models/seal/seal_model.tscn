@@ -253,23 +253,29 @@ node_connections = [&"OneShot", 0, &"TimeScale", &"OneShot", 1, &"TimeScale 2", 
 
 [node name="SealModel" instance=ExtResource("1_qyy2q")]
 
+[node name="legL" parent="seal/body2/legs" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.944214, -0.329332, 0, 0.329332, 0.944214, 0.146875, 0.0600883, 0.009375)
+
+[node name="legR" parent="seal/body2/legs" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.944214, 0.329332, 0, -0.329332, 0.944214, -0.146875, 0.0600883, 0.009375)
+
 [node name="upperBody" parent="seal/body2" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999643, 0.0267368, 0, -0.0267368, 0.999642, 0, 0.575, 0)
+transform = Transform3D(0.998275, -0.00451048, 0.0585401, 2.40956e-06, 0.997048, 0.0767808, -0.0587136, -0.0766483, 0.995327, 0, 0.642875, 0)
 
 [node name="neck" parent="seal/body2/upperBody" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999023, 0.044179, 0, -0.0441789, 0.999025, 0, 0.196875, 0)
+transform = Transform3D(0.99985, 0.000491927, -0.0173133, -1.14e-07, 0.999596, 0.0283953, 0.0173203, -0.028391, 0.999448, 0, 0.203125, 0)
 
 [node name="eyeL" parent="seal/body2/upperBody/neck/head" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.15, -0.1575)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.149155, -0.1575)
 
 [node name="eyeR" parent="seal/body2/upperBody/neck/head" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.154788, -0.1575)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144832, -0.1575)
 
 [node name="armR" parent="seal/body2/upperBody/arms" index="0"]
-transform = Transform3D(0.717741, 0.694756, -0.0465137, -0.696311, 0.716138, -0.0479452, 3.72529e-09, 0.0668003, 0.997765, -0.1875, 0, 0)
+transform = Transform3D(0.593327, 0.795024, -0.126101, -0.804962, 0.586006, -0.0929202, 2.21059e-05, 0.156639, 0.987655, -0.1875, 0, 0)
 
 [node name="armL" parent="seal/body2/upperBody/arms" index="1"]
-transform = Transform3D(0.707106, -0.705527, -0.0472349, 0.707106, 0.705527, 0.0472349, -3.72529e-09, -0.0668002, 0.997767, 0.1875, 0, 0)
+transform = Transform3D(0.794446, -0.601226, -0.0859192, 0.607333, 0.786447, 0.112452, -3.80277e-05, -0.141518, 0.989936, 0.1875, 0, 0)
 
 [node name="hand" parent="seal/body2/upperBody/arms/armL" index="1"]
 transform = Transform3D(0.045363, -4.17285e-08, 0.998971, -0.998971, -4.36664e-08, 0.045363, 4.17285e-08, -1, -4.36664e-08, -0.0125, -0.228125, 0)

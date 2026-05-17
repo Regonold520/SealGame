@@ -2,7 +2,7 @@ extends Node3D
 class_name GenerationManager
 
 var chunks : Dictionary = {}
-@export var seed = 1
+@export var seed = 3
 var rng = RandomNumberGenerator.new()
 func  _ready() -> void:
 	
@@ -11,21 +11,72 @@ func  _ready() -> void:
 	
 
 func generateCaves():
+	var rng = RandomNumberGenerator.new()
+	rng.seed = seed
+
 	var n = FastNoiseLite.new()
-	var cSize = 10
-	var factor = 0.5
-	var baseHeight = 20
-	for cX in cSize:
-		for cY in cSize:
-			for x in 16:
-				for z in 16:
-					var sX = round((x+cX*cSize) * factor) * (1 / factor)
-					var sZ = round((z+cY*cSize) * factor) * (1 / factor)
+	var cSize = 16
+	var wSize = 10
+	
+	var factor = 0.3 # Size of layer
+	var baseHeight = 90 # Max height of layer
+	var spread = 10 # Variance
+	var rippleWeight = 2 # Amount of block that can be +- for surface detail
+	var circles = []
+	var heightMap : Dictionary[Vector2, float] = {}
+	
+	for i in wSize*wSize:
+		var pos = Vector2(rng.randf_range(0, wSize*cSize), rng.randf_range(0, wSize*cSize))
+		circles.append(pos)
+		
+	for cX in wSize:
+		for cY in wSize:
+			for x in cSize:
+				for z in cSize:
+					var maxDist = INF
+					var chosenCirc = null
+					for circ : Vector2 in circles:
+						var d = circ.distance_to(Vector2(x+cX*cSize,z+cY*cSize))
+						if d < maxDist:
+							
+							maxDist = d
+							chosenCirc = circ
 					
-					var height = n.get_noise_2d(sX, sZ)
+					var height = n.get_noise_2d(chosenCirc.x, chosenCirc.y)
 					height = inverse_lerp(-1, 1, height)
 					height *= baseHeight 
-					print(height)
+					height += n.get_noise_2d(x+cX*cSize, z+cY*cSize) * rippleWeight
+					
+					heightMap[Vector2(x+cX*cSize,z+cY*cSize)] = height
+		
+		
+		
+		
+		
+		
+	for cX in wSize:
+		for cY in wSize:
+			for x in cSize:
+				for z in cSize:
+					
+					var totalPos = Vector2(x+cX*cSize,z+cY*cSize)
+					var heights : PackedFloat64Array = []
+					var sum = 0.0
+					var idk = 2
+					for i in idk:
+						for f in idk:
+							var offset = Vector2(i - 1, f - 1)
+							var pos = totalPos + offset
+							if heightMap.has(pos):
+								heights.append(heightMap[pos])
+								sum += heightMap[pos]
+					
+					var height = sum / heights.size()
+					
+					if totalPos.distance_to(Vector2(100,100)) <= 12:
+						height = heightMap[Vector2(100,100)]
+						var pos = get_global_tile_pos(cX-(wSize/2), cY-(wSize/2), x, int(height) + 3, z)
+					
 					
 					for y in 64:
 						
@@ -35,15 +86,29 @@ func generateCaves():
 						
 						
 						if y <= height:
-							setBlock(cX-(cSize/2), cY-(cSize/2), Vector3i(x,y + 64,z), "stone")
+							setBlock(cX-(wSize/2), cY-(wSize/2), Vector3i(x,y + 64,z), "stone")
 						else:
-							setBlock(cX-(cSize/2), cY-(cSize/2), Vector3i(x,y + 64,z), "air")
+							setBlock(cX-(wSize/2), cY-(wSize/2), Vector3i(x,y + 64,z), "air")
 					var roofNoise = n.get_noise_2d((x + cX * 16)* 0.8, ( z + cY * 16)* 0.8) * 5
-					setBlock(cX-(cSize/2), cY-(cSize/2), Vector3i(x,0 + 64 + round(abs(roofNoise)),z), "stone")
-					setBlock(cX-(cSize/2), cY-(cSize/2), Vector3i(x,63 + 64 - round(abs(roofNoise)),z), "stone")
-			await get_tree().create_timer(0.001).timeout
-			buildChunkMesh(chunks[Vector2i(cX-(cSize/2),cY-(cSize/2))])
+					setBlock(cX-(wSize/2), cY-(wSize/2), Vector3i(x,0 + 64 + round(abs(roofNoise)),z), "stone")
+					setBlock(cX-(wSize/2), cY-(wSize/2), Vector3i(x,63 + 64 - round(abs(roofNoise)),z), "stone")
+			buildChunkMesh(chunks[Vector2i(cX-(wSize/2),cY-(wSize/2))])
+	var centerChunkX = floori(100.0 / 16.0) - (wSize / 2)
+	var centerChunkY = floori(100.0 / 16.0) - (wSize / 2)
 
+	var localX = 100 % 16
+	var localZ = 100 % 16
+
+	var centerPos = get_global_tile_pos(
+		centerChunkX,
+		centerChunkY,
+		localX,
+		int(heightMap[Vector2(100,100)]) + 2,
+		localZ
+	)
+	
+	get_tree().current_scene.find_child("StartMover").global_position = centerPos - Vector3(0,0.5,0)
+	
 func generateChunk(x, y):
 	var chunk = {}
 	chunk["mi"] = MeshInstance3D.new()
@@ -132,6 +197,13 @@ var faces = {
 		
 	]
 }
+
+func get_global_tile_pos(chunkX:int, chunkY:int, tileX:int, tileY:int, tileZ:int) -> Vector3:
+	return Vector3(
+		chunkX * 16 + tileX,
+		tileY,
+		chunkY * 16 + tileZ
+	)
 
 func buildChunkMesh(chunk):
 	var st = SurfaceTool.new()

@@ -8,8 +8,15 @@ var blockLookup = {
 
 @onready var seal : Seal = get_tree().current_scene.find_child("Seal", true).find_child("CharacterBody3D")
 @onready var invManager : InventoryManager = get_tree().current_scene.find_child("ChestCollider", true)
+@onready var liftManager : LiftManager = get_tree().current_scene.find_child("LiftManager", true)
+
+@onready var invHolder = get_viewport().get_camera_3d().find_child("ExternalInv", true)
 
 var inv = {}
+
+func _ready() -> void:
+	await get_tree().create_timer(1).timeout
+	addItem("quartz", 99)
 
 func addItem(id, count = 1):
 	var has = false

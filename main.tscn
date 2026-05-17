@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cdu1whn2wel7g"]
+[gd_scene load_steps=33 format=3 uid="uid://cdu1whn2wel7g"]
 
 [ext_resource type="Script" uid="uid://dx7em3xssj7tv" path="res://seal.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dsvxjnwo522cm" path="res://generation_manager.gd" id="2_0xm2m"]
@@ -8,19 +8,47 @@
 [ext_resource type="Script" uid="uid://wo2ygc873b5m" path="res://testRock.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cir2yvgnwedkc" path="res://models/rock/testRock.gltf" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://gkk74q71qimf" path="res://slot.tscn" id="5_kek77"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
-size = Vector3(1.99976, 0.001, 1.9978)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bvp3"]
-height = 1.04853
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
-size = Vector3(0.485352, 0.423828, 0.300781)
+[ext_resource type="Script" uid="uid://b4ehonhuiewf5" path="res://exit_button.gd" id="8_ycdy4"]
+[ext_resource type="Script" uid="uid://cb507ywl0qmur" path="res://lift.gd" id="9_efxa6"]
+[ext_resource type="PackedScene" uid="uid://2tjc8imgohsd" path="res://models/lift/lift.gltf" id="9_kek77"]
+[ext_resource type="Texture2D" uid="uid://moioffg55acd" path="res://sprites/exitButton.png" id="9_w48qg"]
+[ext_resource type="PackedScene" uid="uid://ud7bgro6igfi" path="res://models/lift/rope.gltf" id="10_4c57u"]
+[ext_resource type="FontFile" uid="uid://b77gneyev0w80" path="res://Gamer.ttf" id="10_vivmo"]
+[ext_resource type="Script" uid="uid://85pl14doy5uc" path="res://confirm_button.gd" id="11_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://cp1chuk3p82bm" path="res://models/lift/crate.gltf" id="12_dg77c"]
+[ext_resource type="Texture2D" uid="uid://d2njatvcyi67j" path="res://sprites/confirmButton.png" id="12_yaehf"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+reflected_light_source = 1
+tonemap_mode = 4
+tonemap_exposure = 2.41
+ssr_max_steps = 11
+ssil_enabled = true
+ssil_sharpness = 0.72
+sdfgi_bounce_feedback = 0.0
+sdfgi_cascades = 1
+sdfgi_min_cell_size = 0.15625
+sdfgi_cascade0_distance = 10.0
+sdfgi_max_distance = 20.0
+sdfgi_energy = 0.53
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 3.41
+glow_bloom = 0.2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(2.55695e-08, 0.0134563, 0.0824909, 1)
+fog_light_energy = 0.76
+fog_density = 1.0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_272bh"]
 data = PackedVector3Array(0.5, -0.5, 0.2187, 0.5, -0.0313, 0.8125, 0.5, 0.0312, 0.2187, 0.5, -0.5, 0.2187, 0.5, -0.5, 0.875, 0.5, -0.0313, 0.8125, -0.5, -0.5, 0.6875, -0.6875, 0, 0.2187, -0.5, 0, 0.6875, -0.5, -0.5, 0.6875, -0.5, -0.5, 0.2187, -0.6875, 0, 0.2187, 0.5, 0.4375, 0.6875, 0, 0.625, 0.2187, 0.5, 0.5625, 0.2187, 0.5, 0.4375, 0.6875, 0, 0.625, 0.6875, 0, 0.625, 0.2187, 0, -0.5, 0.9375, 0.5, -0.5, 0.2187, 0, -0.5, 0.2187, 0, -0.5, 0.9375, 0.5, -0.5, 0.875, 0.5, -0.5, 0.2187, 0.5, -0.5, 0.875, 0, 0.0625, 0.875, 0.5, -0.0313, 0.8125, 0.5, -0.5, 0.875, 0, -0.5, 0.9375, 0, 0.0625, 0.875, 0, -0.5, -0.375, 0.5, 0, -0.25, 0, 0, -0.375, 0, -0.5, -0.375, 0.5, -0.5, -0.25, 0.5, 0, -0.25, 0, 0.625, 0.6875, -0.5, 0.5, 0.2187, 0, 0.625, 0.2187, 0, 0.625, 0.6875, -0.5, 0.5, 0.6875, -0.5, 0.5, 0.2187, -0.5, -0.5, -0.25, 0, 0, -0.375, -0.5, 0, -0.25, -0.5, -0.5, -0.25, 0, -0.5, -0.375, 0, 0, -0.375, -0.5, -0.5, 0.6875, 0, -0.5, 0.2187, -0.5, -0.5, 0.2187, -0.5, -0.5, 0.6875, 0, -0.5, 0.9375, 0, -0.5, 0.2187, 0, -0.5, 0.9375, -0.5, 0, 0.6875, 0, 0.0625, 0.875, 0, -0.5, 0.9375, -0.5, -0.5, 0.6875, -0.5, 0, 0.6875, 0, 0.5, -0.375, 0.5, 0.5625, 0.2187, 0, 0.625, 0.2187, 0, 0.5, -0.375, 0.5, 0.5, -0.25, 0.5, 0.5625, 0.2187, 0.5, -0.5, -0.25, 0.5, 0.0312, 0.2187, 0.5, 0, -0.25, 0.5, -0.5, -0.25, 0.5, -0.5, 0.2187, 0.5, 0.0312, 0.2187, 0.5, -0.5, -0.25, 0, -0.5, 0.2187, 0.5, -0.5, 0.2187, 0.5, -0.5, -0.25, 0, -0.5, -0.375, 0, -0.5, 0.2187, 0, -0.5, -0.375, -0.5, -0.5, 0.2187, 0, -0.5, 0.2187, 0, -0.5, -0.375, -0.5, -0.5, -0.25, -0.5, -0.5, 0.2187, -0.5, -0.5, 0.2187, -0.5, 0, -0.25, -0.6875, 0, 0.2187, -0.5, -0.5, 0.2187, -0.5, -0.5, -0.25, -0.5, 0, -0.25, -0.5, 0.5, -0.25, 0, 0.625, 0.2187, -0.5, 0.5, 0.2187, -0.5, 0.5, -0.25, 0, 0.5, -0.375, 0, 0.625, 0.2187, 0, 0.625, 0.6875, 0.5, -0.0313, 0.8125, 0, 0.0625, 0.875, 0, 0.625, 0.6875, 0.5, 0.4375, 0.6875, 0.5, -0.0313, 0.8125, 0.5, 0.4375, 0.6875, 0.5, 0.0312, 0.2187, 0.5, -0.0313, 0.8125, 0.5, 0.4375, 0.6875, 0.5, 0.5625, 0.2187, 0.5, 0.0312, 0.2187, 0.5, 0.5625, 0.2187, 0.5, 0, -0.25, 0.5, 0.0312, 0.2187, 0.5, 0.5625, 0.2187, 0.5, 0.5, -0.25, 0.5, 0, -0.25, 0.5, 0.5, -0.25, 0, 0, -0.375, 0.5, 0, -0.25, 0.5, 0.5, -0.25, 0, 0.5, -0.375, 0, 0, -0.375, 0, 0.5, -0.375, -0.5, 0, -0.25, 0, 0, -0.375, 0, 0.5, -0.375, -0.5, 0.5, -0.25, -0.5, 0, -0.25, -0.5, 0.5, -0.25, -0.6875, 0, 0.2187, -0.5, 0, -0.25, -0.5, 0.5, -0.25, -0.5, 0.5, 0.2187, -0.6875, 0, 0.2187, -0.5, 0.5, 0.2187, -0.5, 0, 0.6875, -0.6875, 0, 0.2187, -0.5, 0.5, 0.2187, -0.5, 0.5, 0.6875, -0.5, 0, 0.6875, -0.5, 0.5, 0.6875, 0, 0.0625, 0.875, -0.5, 0, 0.6875, -0.5, 0.5, 0.6875, 0, 0.625, 0.6875, 0, 0.0625, 0.875)
@@ -37,115 +65,27 @@ data = PackedVector3Array(0.1875, -0.2188, 0.1875, 0.25, -0.0313, 0, 0.1875, -0.
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_efxa6"]
 data = PackedVector3Array(0.3125, -0.2344, 0.2187, 0.375, -0.0469, 0.0312, 0.3125, -0.2344, 0.0312, 0.3125, -0.2344, 0.2187, 0.3125, -0.0469, 0.2187, 0.375, -0.0469, 0.0312, -0.0625, -0.0469, 0.2187, -0.0625, -0.2344, 0.0312, -0.125, -0.0469, 0.0312, -0.0625, -0.0469, 0.2187, -0.0625, -0.2344, 0.2187, -0.0625, -0.2344, 0.0312, 0.3125, 0.1406, 0.2187, 0.125, 0.2031, 0.0312, 0.3125, 0.1406, 0.0312, 0.3125, 0.1406, 0.2187, 0.125, 0.1406, 0.2187, 0.125, 0.2031, 0.0312, 0.125, -0.2344, 0.2187, 0.3125, -0.2344, 0.0312, 0.125, -0.2969, 0.0312, 0.125, -0.2344, 0.2187, 0.3125, -0.2344, 0.2187, 0.3125, -0.2344, 0.0312, 0.3125, -0.2344, 0.2187, 0.125, -0.0469, 0.2813, 0.3125, -0.0469, 0.2187, 0.3125, -0.2344, 0.2187, 0.125, -0.2344, 0.2187, 0.125, -0.0469, 0.2813, 0.125, -0.2344, -0.1563, 0.3125, -0.0469, -0.1563, 0.125, -0.0469, -0.2188, 0.125, -0.2344, -0.1563, 0.3125, -0.2344, -0.1563, 0.3125, -0.0469, -0.1563, -0.0625, -0.2344, -0.1563, 0.125, -0.0469, -0.2188, -0.0625, -0.0469, -0.1563, -0.0625, -0.2344, -0.1563, 0.125, -0.2344, -0.1563, 0.125, -0.0469, -0.2188, -0.0625, -0.2344, 0.2187, 0.125, -0.2969, 0.0312, -0.0625, -0.2344, 0.0312, -0.0625, -0.2344, 0.2187, 0.125, -0.2344, 0.2187, 0.125, -0.2969, 0.0312, 0.125, -0.2344, 0.2187, -0.0625, -0.0469, 0.2187, 0.125, -0.0469, 0.2813, 0.125, -0.2344, 0.2187, -0.0625, -0.2344, 0.2187, -0.0625, -0.0469, 0.2187, 0.125, 0.1406, 0.2187, -0.0625, 0.1406, 0.0312, 0.125, 0.2031, 0.0312, 0.125, 0.1406, 0.2187, -0.0625, 0.1406, 0.2187, -0.0625, 0.1406, 0.0312, 0.125, 0.1406, -0.1563, -0.0625, -0.0469, -0.1563, 0.125, -0.0469, -0.2188, 0.125, 0.1406, -0.1563, -0.0625, 0.1406, -0.1563, -0.0625, -0.0469, -0.1563, -0.0625, 0.1406, 0.2187, -0.125, -0.0469, 0.0312, -0.0625, 0.1406, 0.0312, -0.0625, 0.1406, 0.2187, -0.0625, -0.0469, 0.2187, -0.125, -0.0469, 0.0312, -0.0625, 0.1406, 0.2187, 0.125, -0.0469, 0.2813, -0.0625, -0.0469, 0.2187, -0.0625, 0.1406, 0.2187, 0.125, 0.1406, 0.2187, 0.125, -0.0469, 0.2813, 0.125, 0.1406, 0.2187, 0.3125, -0.0469, 0.2187, 0.125, -0.0469, 0.2813, 0.125, 0.1406, 0.2187, 0.3125, 0.1406, 0.2187, 0.3125, -0.0469, 0.2187, 0.3125, -0.0469, 0.2187, 0.3125, 0.1406, 0.0312, 0.375, -0.0469, 0.0312, 0.3125, -0.0469, 0.2187, 0.3125, 0.1406, 0.2187, 0.3125, 0.1406, 0.0312, 0.3125, 0.1406, -0.1563, 0.125, -0.0469, -0.2188, 0.3125, -0.0469, -0.1563, 0.3125, 0.1406, -0.1563, 0.125, 0.1406, -0.1563, 0.125, -0.0469, -0.2188, -0.0625, -0.0469, -0.1563, -0.0625, 0.1406, 0.0312, -0.125, -0.0469, 0.0312, -0.0625, -0.0469, -0.1563, -0.0625, 0.1406, -0.1563, -0.0625, 0.1406, 0.0312, -0.0625, 0.1406, -0.1563, 0.125, 0.2031, 0.0312, -0.0625, 0.1406, 0.0312, -0.0625, 0.1406, -0.1563, 0.125, 0.1406, -0.1563, 0.125, 0.2031, 0.0312, 0.125, 0.1406, -0.1563, 0.3125, 0.1406, 0.0312, 0.125, 0.2031, 0.0312, 0.125, 0.1406, -0.1563, 0.3125, 0.1406, -0.1563, 0.3125, 0.1406, 0.0312, 0.3125, 0.1406, -0.1563, 0.375, -0.0469, 0.0312, 0.3125, 0.1406, 0.0312, 0.3125, 0.1406, -0.1563, 0.3125, -0.0469, -0.1563, 0.375, -0.0469, 0.0312, 0.3125, -0.0469, -0.1563, 0.3125, -0.2344, 0.0312, 0.375, -0.0469, 0.0312, 0.3125, -0.0469, -0.1563, 0.3125, -0.2344, -0.1563, 0.3125, -0.2344, 0.0312, 0.3125, -0.2344, -0.1563, 0.125, -0.2969, 0.0312, 0.3125, -0.2344, 0.0312, 0.3125, -0.2344, -0.1563, 0.125, -0.2344, -0.1563, 0.125, -0.2969, 0.0312, 0.125, -0.2344, -0.1563, -0.0625, -0.2344, 0.0312, 0.125, -0.2969, 0.0312, 0.125, -0.2344, -0.1563, -0.0625, -0.2344, -0.1563, -0.0625, -0.2344, 0.0312, -0.0625, -0.2344, -0.1563, -0.125, -0.0469, 0.0312, -0.0625, -0.2344, 0.0312, -0.0625, -0.2344, -0.1563, -0.0625, -0.0469, -0.1563, -0.125, -0.0469, 0.0312)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bvp3"]
+height = 1.04853
 
-[sub_resource type="Sky" id="Sky_0xm2m"]
-sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
+size = Vector3(0.485352, 0.423828, 0.300781)
 
-[sub_resource type="Environment" id="Environment_h2yge"]
-background_mode = 2
-sky = SubResource("Sky_0xm2m")
-reflected_light_source = 1
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vivmo"]
+size = Vector2(16, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4c57u"]
+size = Vector3(1.99707, 36.0017, 1.83398)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yaehf"]
+size = Vector2(21.67, 21.78)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_074og"]
+data = PackedVector3Array(10.835, 0, 10.89, -10.835, 0, 10.89, 10.835, 0, -10.89, -10.835, 0, 10.89, -10.835, 0, -10.89, 10.835, 0, -10.89)
 
 [node name="Main" type="Node3D"]
 
 [node name="TestHolder" type="Node3D" parent="."]
-
-[node name="Floor" type="MeshInstance3D" parent="TestHolder"]
-transform = Transform3D(13.0023, 0, 0, 0, 1, 0, 0, 0, 12.0625, 0, 0, 0)
-mesh = SubResource("PlaneMesh_0xm2m")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Main")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TestHolder/Floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestHolder/Floor/StaticBody3D"]
-shape = SubResource("BoxShape3D_h2yge")
-
-[node name="Seal" type="Node3D" parent="TestHolder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22608, 0)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="TestHolder/Seal" node_paths=PackedStringArray("chest")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34971, 0)
-collision_layer = 0
-script = ExtResource("1_ig7tw")
-chest = NodePath("SealChest")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestHolder/Seal/CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.736956, 0)
-shape = SubResource("CapsuleShape3D_1bvp3")
-
-[node name="SealModel" parent="TestHolder/Seal/CharacterBody3D" instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25995, 0)
-
-[node name="SealChest" type="Marker3D" parent="TestHolder/Seal/CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.748843, 0)
-
-[node name="ChestCollider" type="StaticBody3D" parent="TestHolder/Seal/CharacterBody3D/SealChest"]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("3_272bh")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestHolder/Seal/CharacterBody3D/SealChest/ChestCollider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0206299, 0)
-shape = SubResource("BoxShape3D_7mycd")
-
-[node name="CamAxis" type="Node3D" parent="TestHolder/Seal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34971, 0)
-
-[node name="Camera3D" type="Camera3D" parent="TestHolder/Seal/CamAxis"]
-transform = Transform3D(1, 0, 0, 0, 0.944273, 0.329164, 0, -0.329164, 0.944273, -4.76837e-07, 0.964596, 3.45328)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="TestHolder/Seal/CamAxis/Camera3D"]
-
-[node name="ItemsPanel" type="Node2D" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer"]
-z_index = 1
-position = Vector2(-171, 338)
-scale = Vector2(3.5, 3.5)
-
-[node name="Items" type="Node2D" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel"]
-
-[node name="Slot" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
-position = Vector2(-12.5, -21)
-
-[node name="Slot2" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
-position = Vector2(12.5, -21)
-
-[node name="Slot3" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
-position = Vector2(-12.5, 0.888889)
-slotMover = 1.0
-
-[node name="Slot4" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
-position = Vector2(12.5, 0.888889)
-slotMover = 1.0
-
-[node name="Slot5" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
-position = Vector2(-12.5, 22.8889)
-slotMover = 2.0
-
-[node name="Slot6" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
-position = Vector2(12.5, 22.8889)
-slotMover = 2.0
-
-[node name="Slot7" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
-position = Vector2(-12.5, 45.3333)
-slotMover = 3.0
-
-[node name="Slot8" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
-position = Vector2(12.5, 45.3333)
-slotMover = 3.0
-
-[node name="ScreenColour" type="ColorRect" parent="TestHolder/Seal/CamAxis/Camera3D/CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0, 0, 0, 0)
-
-[node name="Interaction" type="Node3D" parent="TestHolder/Seal"]
-script = ExtResource("3_1bvp3")
 
 [node name="Label3D" type="Label3D" parent="TestHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0790155, 3.40519, -12.104)
@@ -156,177 +96,399 @@ font_size = 442
 mesh = SubResource("ArrayMesh_h2yge")
 skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Main")
 
-[node name="Rock" type="StaticBody3D" parent="TestHolder"]
-transform = Transform3D(0.68766, 0.00282479, -0.726027, -0.00392445, 0.999992, 0.000173674, 0.726022, 0.00272984, 0.687666, -4.32857, 0.47533, -1.08009)
-script = ExtResource("4_lquwl")
-
-[node name="rockModel" parent="TestHolder/Rock" instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestHolder/Rock"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_272bh")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="TestHolder/Rock"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
-shape = SubResource("ConcavePolygonShape3D_5vw27")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="TestHolder/Rock"]
-transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
-shape = SubResource("ConcavePolygonShape3D_kek77")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="TestHolder/Rock"]
-transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_4c57u")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="TestHolder/Rock"]
-transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
-shape = SubResource("ConcavePolygonShape3D_efxa6")
-
-[node name="Rock2" type="StaticBody3D" parent="TestHolder"]
-transform = Transform3D(0.999983, 0.00282479, 0.00503335, -0.00281102, 0.999992, -0.00274402, -0.00504106, 0.00272984, 0.999984, -5.91275, 0.49091, -5.14838)
-script = ExtResource("4_lquwl")
-
-[node name="rockModel" parent="TestHolder/Rock2" instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestHolder/Rock2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_272bh")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="TestHolder/Rock2"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
-shape = SubResource("ConcavePolygonShape3D_5vw27")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="TestHolder/Rock2"]
-transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
-shape = SubResource("ConcavePolygonShape3D_kek77")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="TestHolder/Rock2"]
-transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_4c57u")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="TestHolder/Rock2"]
-transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
-shape = SubResource("ConcavePolygonShape3D_efxa6")
-
-[node name="Rock3" type="StaticBody3D" parent="TestHolder"]
-transform = Transform3D(0.629014, 0.00282479, 0.777389, 0.000345314, 0.999992, -0.00391308, -0.777394, 0.00272984, 0.629008, -8.89728, 0.486305, -0.373233)
-script = ExtResource("4_lquwl")
-
-[node name="rockModel" parent="TestHolder/Rock3" instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestHolder/Rock3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_272bh")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="TestHolder/Rock3"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
-shape = SubResource("ConcavePolygonShape3D_5vw27")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="TestHolder/Rock3"]
-transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
-shape = SubResource("ConcavePolygonShape3D_kek77")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="TestHolder/Rock3"]
-transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_4c57u")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="TestHolder/Rock3"]
-transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
-shape = SubResource("ConcavePolygonShape3D_efxa6")
-
-[node name="Rock4" type="StaticBody3D" parent="TestHolder"]
-transform = Transform3D(0.649544, 0.00282479, -0.760319, -0.00391039, 0.999992, 0.000374595, 0.760314, 0.00272984, 0.64955, -5.23859, 0.464507, 3.82586)
-script = ExtResource("4_lquwl")
-
-[node name="rockModel" parent="TestHolder/Rock4" instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestHolder/Rock4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_272bh")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="TestHolder/Rock4"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
-shape = SubResource("ConcavePolygonShape3D_5vw27")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="TestHolder/Rock4"]
-transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
-shape = SubResource("ConcavePolygonShape3D_kek77")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="TestHolder/Rock4"]
-transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_4c57u")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="TestHolder/Rock4"]
-transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
-shape = SubResource("ConcavePolygonShape3D_efxa6")
-
-[node name="Rock5" type="StaticBody3D" parent="TestHolder"]
-transform = Transform3D(0.999983, 0.00282479, 0.00503335, -0.00281102, 0.999992, -0.00274402, -0.00504106, 0.00272984, 0.999984, -9.107, 0.483, 3.847)
-script = ExtResource("4_lquwl")
-
-[node name="rockModel" parent="TestHolder/Rock5" instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestHolder/Rock5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_272bh")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="TestHolder/Rock5"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
-shape = SubResource("ConcavePolygonShape3D_5vw27")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="TestHolder/Rock5"]
-transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
-shape = SubResource("ConcavePolygonShape3D_kek77")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="TestHolder/Rock5"]
-transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_4c57u")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="TestHolder/Rock5"]
-transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
-shape = SubResource("ConcavePolygonShape3D_efxa6")
-
-[node name="Rock6" type="StaticBody3D" parent="TestHolder"]
-transform = Transform3D(0.276815, 0.000372108, 0.960923, 0.00571591, 0.999982, -0.00203384, -0.960906, 0.00605557, 0.276808, -9.872, 0.483, -5.714)
-script = ExtResource("4_lquwl")
-
-[node name="rockModel" parent="TestHolder/Rock6" instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestHolder/Rock6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_272bh")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="TestHolder/Rock6"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
-shape = SubResource("ConcavePolygonShape3D_5vw27")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="TestHolder/Rock6"]
-transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
-shape = SubResource("ConcavePolygonShape3D_kek77")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="TestHolder/Rock6"]
-transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
-shape = SubResource("ConcavePolygonShape3D_4c57u")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="TestHolder/Rock6"]
-transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
-shape = SubResource("ConcavePolygonShape3D_efxa6")
-
 [node name="GenerationManager" type="Node3D" parent="."]
 script = ExtResource("2_0xm2m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.429991, 0.902833, 0, -0.902833, -0.429991, -0.00239754, 12.6335, 0.0218911)
-light_energy = 0.158
-light_indirect_energy = 0.0
+transform = Transform3D(0.971317, -0.124038, -0.202873, 0.237788, 0.506673, 0.828697, 0, -0.853169, 0.521635, -0.00239754, 12.6335, 0.0218911)
 light_specular = 0.337
+shadow_enabled = true
 sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
+
+[node name="StartMover" type="Node3D" parent="."]
+
+[node name="Rock" type="StaticBody3D" parent="StartMover"]
+transform = Transform3D(0.68766, 0.00282479, -0.726027, -0.00392445, 0.999992, 0.000173674, 0.726022, 0.00272984, 0.687666, 4.54083, 0, -2.57805)
+script = ExtResource("4_lquwl")
+
+[node name="rockModel" parent="StartMover/Rock" instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StartMover/Rock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_272bh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StartMover/Rock"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
+shape = SubResource("ConcavePolygonShape3D_5vw27")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StartMover/Rock/CollisionShape3D3"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
+shape = SubResource("ConcavePolygonShape3D_5vw27")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StartMover/Rock"]
+transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
+shape = SubResource("ConcavePolygonShape3D_kek77")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StartMover/Rock"]
+transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_4c57u")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StartMover/Rock"]
+transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
+shape = SubResource("ConcavePolygonShape3D_efxa6")
+
+[node name="Rock2" type="StaticBody3D" parent="StartMover"]
+transform = Transform3D(0.999983, 0.00282479, 0.00503335, -0.00281102, 0.999992, -0.00274402, -0.00504106, 0.00272984, 0.999984, 1.0839, 0, -6.01403)
+script = ExtResource("4_lquwl")
+
+[node name="rockModel" parent="StartMover/Rock2" instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StartMover/Rock2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_272bh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StartMover/Rock2"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
+shape = SubResource("ConcavePolygonShape3D_5vw27")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StartMover/Rock2"]
+transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
+shape = SubResource("ConcavePolygonShape3D_kek77")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StartMover/Rock2"]
+transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_4c57u")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StartMover/Rock2"]
+transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
+shape = SubResource("ConcavePolygonShape3D_efxa6")
+
+[node name="Rock3" type="StaticBody3D" parent="StartMover"]
+transform = Transform3D(0.629014, 0.00282479, 0.777389, 0.000345314, 0.999992, -0.00391308, -0.777394, 0.00272984, 0.629008, -4.59648, 9.53674e-07, -2.31181)
+script = ExtResource("4_lquwl")
+
+[node name="rockModel" parent="StartMover/Rock3" instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StartMover/Rock3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_272bh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StartMover/Rock3"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
+shape = SubResource("ConcavePolygonShape3D_5vw27")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StartMover/Rock3"]
+transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
+shape = SubResource("ConcavePolygonShape3D_kek77")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StartMover/Rock3"]
+transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_4c57u")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StartMover/Rock3"]
+transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
+shape = SubResource("ConcavePolygonShape3D_efxa6")
+
+[node name="Rock4" type="StaticBody3D" parent="StartMover"]
+transform = Transform3D(0.649544, 0.00282479, -0.760319, -0.00391039, 0.999992, 0.000374595, 0.760314, 0.00272984, 0.64955, -5.57338, 0, 1.69044)
+script = ExtResource("4_lquwl")
+
+[node name="rockModel" parent="StartMover/Rock4" instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StartMover/Rock4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_272bh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StartMover/Rock4"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
+shape = SubResource("ConcavePolygonShape3D_5vw27")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StartMover/Rock4"]
+transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
+shape = SubResource("ConcavePolygonShape3D_kek77")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StartMover/Rock4"]
+transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_4c57u")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StartMover/Rock4"]
+transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
+shape = SubResource("ConcavePolygonShape3D_efxa6")
+
+[node name="Rock5" type="StaticBody3D" parent="StartMover"]
+transform = Transform3D(0.999983, 0.00282479, 0.00503335, -0.00281102, 0.999992, -0.00274402, -0.00504106, 0.00272984, 0.999984, -2.25224, 0, 3.20643)
+script = ExtResource("4_lquwl")
+
+[node name="rockModel" parent="StartMover/Rock5" instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StartMover/Rock5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_272bh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StartMover/Rock5"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
+shape = SubResource("ConcavePolygonShape3D_5vw27")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StartMover/Rock5"]
+transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
+shape = SubResource("ConcavePolygonShape3D_kek77")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StartMover/Rock5"]
+transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_4c57u")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StartMover/Rock5"]
+transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
+shape = SubResource("ConcavePolygonShape3D_efxa6")
+
+[node name="Rock6" type="StaticBody3D" parent="StartMover"]
+transform = Transform3D(0.276815, 0.000372108, 0.960923, 0.00571591, 0.999982, -0.00203384, -0.960906, 0.00605557, 0.276808, 3.91268, 0, 2.34478)
+script = ExtResource("4_lquwl")
+
+[node name="rockModel" parent="StartMover/Rock6" instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127667, -0.548898, -0.110081)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StartMover/Rock6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182719, -0.0458851, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_272bh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StartMover/Rock6"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.129781, -0.545885, -0.106549)
+shape = SubResource("ConcavePolygonShape3D_5vw27")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StartMover/Rock6"]
+transform = Transform3D(0.742404, 0.346189, -0.573576, -0.422618, 0.906308, 2.23517e-08, 0.519837, 0.242404, 0.819152, -0.370219, -0.108385, -0.731549)
+shape = SubResource("ConcavePolygonShape3D_kek77")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StartMover/Rock6"]
+transform = Transform3D(0.779483, 0.266614, -0.566854, -0.0564251, 0.93111, 0.360347, 0.623877, -0.2489, 0.740828, 0.379781, 0.0791149, 0.205951)
+shape = SubResource("ConcavePolygonShape3D_4c57u")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StartMover/Rock6"]
+transform = Transform3D(0.200191, 0.483829, -0.851958, 0.451036, 0.726429, 0.518524, 0.869765, -0.488068, -0.0727997, 0.739156, -0.108385, -0.840924)
+shape = SubResource("ConcavePolygonShape3D_efxa6")
+
+[node name="Seal" type="Node3D" parent="StartMover"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22608, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="StartMover/Seal" node_paths=PackedStringArray("chest")]
+collision_layer = 0
+script = ExtResource("1_ig7tw")
+chest = NodePath("SealChest")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartMover/Seal/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.736956, 0)
+shape = SubResource("CapsuleShape3D_1bvp3")
+
+[node name="SealModel" parent="StartMover/Seal/CharacterBody3D" instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25995, 0)
+
+[node name="SealChest" type="Marker3D" parent="StartMover/Seal/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.748843, 0)
+
+[node name="ChestCollider" type="StaticBody3D" parent="StartMover/Seal/CharacterBody3D/SealChest"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_272bh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartMover/Seal/CharacterBody3D/SealChest/ChestCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0206299, 0)
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="CamAxis" type="Node3D" parent="StartMover/Seal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34971, 0)
+
+[node name="Node3D" type="Node3D" parent="StartMover/Seal/CamAxis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-07, 0.964596, 3.45328)
+
+[node name="Camera3D" type="Camera3D" parent="StartMover/Seal/CamAxis/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.944273, 0.329164, 0, -0.329164, 0.944273, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="StartMover/Seal/CamAxis/Node3D/Camera3D"]
+
+[node name="ItemsPanel" type="Node2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer"]
+z_index = 1
+position = Vector2(-171, 338)
+scale = Vector2(3.5, 3.5)
+
+[node name="Items" type="Node2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel"]
+
+[node name="Slot" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
+position = Vector2(-12.5, -21)
+
+[node name="Slot2" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
+position = Vector2(12.5, -21)
+
+[node name="Slot3" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
+position = Vector2(-12.5, 0.888889)
+slotMover = 1.0
+
+[node name="Slot4" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
+position = Vector2(12.5, 0.888889)
+slotMover = 1.0
+
+[node name="Slot5" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
+position = Vector2(-12.5, 22.8889)
+slotMover = 2.0
+
+[node name="Slot6" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
+position = Vector2(12.5, 22.8889)
+slotMover = 2.0
+
+[node name="Slot7" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
+position = Vector2(-12.5, 45.3333)
+slotMover = 3.0
+
+[node name="Slot8" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/ItemsPanel/Items" instance=ExtResource("5_kek77")]
+position = Vector2(12.5, 45.3333)
+slotMover = 3.0
+
+[node name="ScreenColour" type="ColorRect" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="LiftPanel" type="Node2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer"]
+
+[node name="TopMenu" type="Node2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/LiftPanel"]
+position = Vector2(571, -148)
+
+[node name="DisplayText" type="RichTextLabel" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/LiftPanel/TopMenu"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -577.0
+offset_right = 577.0
+offset_bottom = 146.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.306556, 0.595963, 1)
+theme_override_colors/font_outline_color = Color(0.348226, 3.93469e-06, 0.240544, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("10_vivmo")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]SEND ITEMS TO CERISE"
+
+[node name="Exit" type="Area2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/LiftPanel/TopMenu"]
+position = Vector2(-56, 96)
+scale = Vector2(3.5, 3.5)
+script = ExtResource("8_ycdy4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/LiftPanel/TopMenu/Exit"]
+shape = SubResource("RectangleShape2D_vivmo")
+
+[node name="Texture" type="Sprite2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/LiftPanel/TopMenu/Exit"]
+texture = ExtResource("9_w48qg")
+
+[node name="Confirm" type="Area2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/LiftPanel/TopMenu"]
+position = Vector2(58.0001, 96)
+scale = Vector2(3.5, 3.5)
+script = ExtResource("11_2cqfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/LiftPanel/TopMenu/Confirm"]
+shape = SubResource("RectangleShape2D_vivmo")
+
+[node name="Texture" type="Sprite2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/LiftPanel/TopMenu/Confirm"]
+texture = ExtResource("12_yaehf")
+
+[node name="ExternalInv" type="Node2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer"]
+position = Vector2(548, 328)
+scale = Vector2(3.5, 3.5)
+
+[node name="Interaction" type="Node3D" parent="StartMover/Seal"]
+script = ExtResource("3_1bvp3")
+
+[node name="LiftManager" type="StaticBody3D" parent="StartMover"]
+script = ExtResource("9_efxa6")
+
+[node name="blockbench_export" parent="StartMover/LiftManager" instance=ExtResource("9_kek77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.572164, -0.610535, 4.66947)
+
+[node name="blockbench_export" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="blockbench_export2" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="blockbench_export3" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+
+[node name="blockbench_export4" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="blockbench_export5" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="blockbench_export6" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+
+[node name="blockbench_export7" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+
+[node name="blockbench_export8" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
+
+[node name="blockbench_export9" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
+
+[node name="blockbench_export10" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+
+[node name="blockbench_export11" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, 0)
+
+[node name="blockbench_export12" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24, 0)
+
+[node name="blockbench_export13" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, 0)
+
+[node name="blockbench_export14" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, 0)
+
+[node name="blockbench_export15" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="blockbench_export16" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("10_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32, 0)
+
+[node name="blockbench_export17" parent="StartMover/LiftManager/blockbench_export" instance=ExtResource("12_dg77c")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="StartMover/LiftManager/blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4591, 0)
+light_color = Color(1, 0.925905, 0.727337, 1)
+light_energy = 0.04
+light_size = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartMover/LiftManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58667, 17.2225, 4.73743)
+shape = SubResource("BoxShape3D_4c57u")
+
+[node name="CamPoint" type="Node3D" parent="StartMover/LiftManager"]
+transform = Transform3D(-0.95882, 0.106853, -0.263148, 0, 0.926529, 0.376224, 0.284015, 0.360731, -0.888374, 0.21, 0.905, 2.715)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595741, 0)
+mesh = SubResource("PlaneMesh_yaehf")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Main")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595741, 0)
+shape = SubResource("ConcavePolygonShape3D_074og")

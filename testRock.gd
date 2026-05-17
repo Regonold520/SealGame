@@ -15,6 +15,7 @@ func interact():
 	t.tween_property(self, "rotation_degrees:y", rotation_degrees.y + newRot, 0.3)
 	
 	breaks -= 1
+	Ref.seal.camShake(5)
 	if breaks <= 0:
 		var ids = ["coal","quartz", "stone", "stone"]
 		var prefab = load("res://world_item.tscn")

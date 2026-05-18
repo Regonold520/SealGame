@@ -1,17 +1,22 @@
-extends Node2D
+extends Area2D
 class_name InventorySlot
 
 @export var slotMover = 0.0
 var currentItem = null
 @onready var countText = find_child("CountText", true)
-
+var hovering = false
+var myInv = null
 var deltaTimer = 0
 @onready var origY = $Mover.position.y
 func _process(delta: float) -> void:
 	deltaTimer += delta
 	$Mover.position.y = origY + sin(deltaTimer + (slotMover/2)) * 1.5
+	if hovering and Input.is_action_just_pressed("Interact"):
+		
+		Ref.invManager.slotclicked.emit(self, myInv)
 
 func changeSlot(item, targetInv = Ref.inv):
+	myInv = targetInv
 	currentItem = item
 	countText = find_child("CountText", true)
 	if item == null:
@@ -25,8 +30,12 @@ func changeSlot(item, targetInv = Ref.inv):
 			countText.visible = true
 		$Mover/Item.texture = load("res://sprites/"+item+".png")
 		$Mover/BG.self_modulate = Color("FFFFFF")
-		var c = targetInv[item]["count"]
+		var c = targetInv["items"][item]["count"]
 		if countText != null:
 			countText.text = "X" + str(c)
 		
-		
+func _mouse_enter() -> void:
+	hovering = true
+
+func _mouse_exit() -> void:
+	hovering = false

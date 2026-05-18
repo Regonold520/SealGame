@@ -5,8 +5,12 @@ var open = false
 
 @onready var tween
 @onready var uiHolder = get_viewport().get_camera_3d().find_child("CanvasLayer")
+
+signal slotclicked
+
 var slots = []
 func _ready() -> void:
+	slotclicked.connect(slotClicked)
 	var holder = get_viewport().get_camera_3d().find_child("Items", true)
 	slots = holder.get_children()
 
@@ -48,3 +52,6 @@ func closeInv(ji = false):
 		
 	
 	tween.tween_property(uiHolder.find_child("ItemsPanel"), "position:x", -171.0, 0.3)
+
+func slotClicked(slot, inv):
+	pass

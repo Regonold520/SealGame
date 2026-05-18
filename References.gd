@@ -12,23 +12,51 @@ var blockLookup = {
 
 @onready var invHolder = get_viewport().get_camera_3d().find_child("ExternalInv", true)
 
-var inv = {}
+var inv = {"items": {}, "id": "player"}
+
+var allInvs = []
 
 func _ready() -> void:
+	inv["obj"] = self
+	allInvs.append(inv)
 	await get_tree().create_timer(1).timeout
-	addItem("quartz", 99)
 
 func addItem(id, count = 1):
 	var has = false
-	if inv.get(id):
-		inv[id]["count"] += count
+	if inv["items"].get(id):
+		inv["items"][id]["count"] += count
 	else:
 		var newEntry = {
 			"count": count
 		}
-		inv[id] = newEntry
-	var c = 0
+		inv["items"][id] = newEntry
+	refreshSlots()
 
-	for item_id in inv.keys():
-		invManager.slots[c].changeSlot(item_id)
+func removeItem(id, count = 1):
+	var has = false
+	if inv["items"].get(id):
+		inv["items"][id]["count"] -= count
+		
+		if inv["items"][id]["count"] <= 0:
+			inv["items"].erase(id)
+	else:
+		pass
+	refreshSlots()
+	
+	
+	
+func getInv(toGet) -> Dictionary:
+	for i in allInvs:
+		if i["id"] == toGet:
+			return i
+	return {}
+
+func refreshSlots():
+	for slot in invManager.slots:
+		slot.changeSlot(null)
+
+	var c = 0
+	for item_id in inv["items"].keys():
+		invManager.slots[c].changeSlot(item_id, inv)
+
 		c += 1

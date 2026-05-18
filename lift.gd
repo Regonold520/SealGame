@@ -16,14 +16,19 @@ var origRot = 0
 @onready var camAxis = get_viewport().get_camera_3d().get_parent().get_parent()
 
 @onready var menu = get_viewport().get_camera_3d().find_child("TopMenu", true)
+@onready var invDisplay = get_viewport().get_camera_3d().find_child("ExternalInv", true)
 
 func _ready() -> void:
+	Ref.invManager.slotclicked.connect(slotClicked)
 	super()
-	await get_tree().create_timer(1).timeout
-	addItem("coal", 20)
-	addItem("stone", 30)
-	addItem("quartz", 40)
-	#drawInv()
+
+func slotClicked(slot : InventorySlot, inv):
+	if inv["id"] == "player":
+		Ref.getInv("lift")["obj"].addItem(slot.currentItem)
+		Ref.getInv("player")["obj"].removeItem(slot.currentItem)
+	elif inv["id"] == "lift":
+		Ref.getInv("player")["obj"].addItem(slot.currentItem)
+		Ref.getInv("lift")["obj"].removeItem(slot.currentItem)
 
 var deltaTimer = 0
 func _process(delta: float) -> void:
@@ -41,6 +46,7 @@ func open():
 	origPos = cam.global_position
 	origRot = cam.rotation_degrees
 	moveTween.tween_property(cam, "global_position", $CamPoint.global_position, 0.6)
+	moveTween.tween_property(invDisplay, "position:x", 869.0, 0.6)
 	var start_rot = cam.rotation
 	var target_rot = $CamPoint.global_rotation
 	Ref.invManager.openInv(true)
@@ -54,7 +60,7 @@ func open():
 		0.6
 	)
 	moveTween.tween_property(menu, "position:y", 0, 0.6)
-	
+	drawInv()
 
 func close():
 	animPlayer.play("close")
@@ -68,5 +74,8 @@ func close():
 	moveTween.tween_property(cam, "position", Vector3(0, 0.965, 3.453), 0.6)
 	moveTween.tween_property(cam, "rotation_degrees", Vector3(-19.2, 0, 0), 0.6)
 	moveTween.tween_property(menu, "position:y", -148.0, 0.6)
+	moveTween.tween_property(invDisplay, "position:x", 1331.0, 0.6)
 	Ref.seal.camOverwrite = false
 	Ref.seal.canMove = true
+	await moveTween.finished
+	clearInv()

@@ -87,11 +87,6 @@ data = PackedVector3Array(10.835, 0, 10.89, -10.835, 0, 10.89, 10.835, 0, -10.89
 
 [node name="TestHolder" type="Node3D" parent="."]
 
-[node name="Label3D" type="Label3D" parent="TestHolder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0790155, 3.40519, -12.104)
-text = "Seal Game!"
-font_size = 442
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestHolder"]
 mesh = SubResource("ArrayMesh_h2yge")
 skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Main")
@@ -407,7 +402,7 @@ shape = SubResource("RectangleShape2D_vivmo")
 texture = ExtResource("12_yaehf")
 
 [node name="ExternalInv" type="Node2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer"]
-position = Vector2(548, 328)
+position = Vector2(869, 360)
 scale = Vector2(3.5, 3.5)
 
 [node name="Interaction" type="Node3D" parent="StartMover/Seal"]
@@ -415,6 +410,7 @@ script = ExtResource("3_1bvp3")
 
 [node name="LiftManager" type="StaticBody3D" parent="StartMover"]
 script = ExtResource("9_efxa6")
+invId = "lift"
 
 [node name="blockbench_export" parent="StartMover/LiftManager" instance=ExtResource("9_kek77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.572164, -0.610535, 4.66947)
@@ -481,6 +477,33 @@ shape = SubResource("BoxShape3D_4c57u")
 
 [node name="CamPoint" type="Node3D" parent="StartMover/LiftManager"]
 transform = Transform3D(-0.95882, 0.106853, -0.263148, 0, 0.926529, 0.376224, 0.284015, 0.360731, -0.888374, 0.21, 0.905, 2.715)
+
+[node name="Label3D" type="Label3D" parent="StartMover"]
+transform = Transform3D(0.762228, 0, 0.647309, 0, 1, 0, -0.647309, 0, 0.762228, -4.09819, 1.54909, -5.95483)
+text = "Use WASD to move"
+font_size = 157
+
+[node name="Label3D5" type="Label3D" parent="StartMover"]
+transform = Transform3D(0.762228, 0, 0.647309, 0, 1, 0, -0.647309, 0, 0.762228, -4.09819, 2.31344, -5.95483)
+text = "Click on players chest to enter / exit inventory"
+font_size = 72
+
+[node name="Label3D2" type="Label3D" parent="StartMover"]
+transform = Transform3D(0.606793, 0, -0.79486, 0, 1, 0, 0.79486, 0, 0.606793, 4.77529, 1.54909, -2.6956)
+text = "Click on rocks to break"
+font_size = 157
+
+[node name="Label3D3" type="Label3D" parent="StartMover"]
+transform = Transform3D(-0.988137, 0, 0.153572, 0, 1, 0, -0.153572, 0, -0.988137, 0.417969, 2.36487, 3.88313)
+text = "Click on the lift door to open"
+font_size = 157
+
+[node name="Label3D4" type="Label3D" parent="StartMover"]
+transform = Transform3D(-0.988137, 0, 0.153572, 0, 1, 0, -0.153572, 0, -0.988137, -3.41299, 1.21242, 3.72728)
+modulate = Color(0.633757, 0.633757, 0.633757, 1)
+text = "Click on inventory slots
+to transfer between inventories"
+font_size = 82
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

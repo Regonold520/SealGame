@@ -15,12 +15,13 @@ func _ready() -> void:
 	slots = holder.get_children()
 
 func interact():
-	open = !open
-	if open:
-		openInv()
-	else:
-		closeInv()
-		
+	if Ref.seal.canInv:
+		open = !open
+		if open:
+			openInv()
+		else:
+			closeInv()
+			
 func openInv(ji = false):
 	if tween != null:
 		tween.kill()

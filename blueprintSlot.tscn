@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://by1jpy8t56exh"]
+
+[ext_resource type="Script" uid="uid://c5n7x2lj25egw" path="res://inventorySlot.gd" id="1_wan2t"]
+[ext_resource type="Texture2D" uid="uid://b44bolxyvnaev" path="res://sprites/invSlot.png" id="2_xspho"]
+[ext_resource type="FontFile" uid="uid://b77gneyev0w80" path="res://Gamer.ttf" id="3_6f7d8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hiqfk"]
+
+[node name="Slot" type="Area2D"]
+script = ExtResource("1_wan2t")
+
+[node name="Mover" type="Node2D" parent="."]
+
+[node name="BG" type="Sprite2D" parent="Mover"]
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
+texture = ExtResource("2_xspho")
+
+[node name="Item" type="Sprite2D" parent="Mover"]
+
+[node name="Node2D" type="Node2D" parent="Mover"]
+position = Vector2(6, 7)
+rotation = -0.0557128
+
+[node name="CountText" type="RichTextLabel" parent="Mover/Node2D"]
+z_index = 1
+texture_filter = 1
+clip_contents = false
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 35.0
+offset_bottom = 32.0
+scale = Vector2(0.101879, 0.101879)
+theme_override_colors/default_color = Color(0.903598, 0.903598, 0.903598, 1)
+theme_override_colors/font_outline_color = Color(0.122753, 0.129179, 0.110388, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("3_6f7d8")
+theme_override_font_sizes/normal_font_size = 160
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CountText2" type="RichTextLabel" parent="Mover"]
+z_index = 1
+texture_filter = 1
+clip_contents = false
+offset_left = 12.0
+offset_top = -10.0
+offset_right = 372.0
+offset_bottom = 244.0
+scale = Vector2(0.0744724, 0.0744724)
+theme_override_colors/default_color = Color(0.903598, 0.903598, 0.903598, 1)
+theme_override_colors/font_outline_color = Color(0.122753, 0.129179, 0.110388, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("3_6f7d8")
+theme_override_font_sizes/normal_font_size = 160
+bbcode_enabled = true
+text = "0/5
+Quartz"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hiqfk")

@@ -205,6 +205,23 @@ func get_global_tile_pos(chunkX:int, chunkY:int, tileX:int, tileY:int, tileZ:int
 		chunkY * 16 + tileZ
 	)
 
+func global_to_tile(global_pos: Vector3) -> Dictionary:
+	var chunk_x = floori(global_pos.x / 16.0)
+	var chunk_y = floori(global_pos.z / 16.0)
+
+	var tile_x = posmod(floori(global_pos.x), 16)
+	var tile_z = posmod(floori(global_pos.z), 16)
+
+	var tile_y = floori(global_pos.y) + 64
+
+	return {
+		"chunkX": chunk_x,
+		"chunkY": chunk_y,
+		"tileX": tile_x,
+		"tileY": tile_y,
+		"tileZ": tile_z
+	}
+
 func buildChunkMesh(chunk):
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -298,7 +315,7 @@ func isAir(chunk, x, y, z):
 	return chunk["blocks"][x][y][z] == 0
 
 func getBlock(chunkX, chunkY, x, y, z):
+	
 	if !chunks.has(Vector2i(chunkX, chunkY)):
 		return 0
-
 	return chunks[Vector2i(chunkX, chunkY)]["blocks"][x][y][z]

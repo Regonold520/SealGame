@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cp1chuk3p82bm"
-path="res://.godot/imported/crate.gltf-84416b6c5630a5ca18e3f3a849fe682e.scn"
+path="res://.godot/imported/crate.gltf-e6852ee905c2746dc983e31ae1a0a02a.scn"
 
 [deps]
 
-source_file="res://models/lift/crate.gltf"
-dest_files=["res://.godot/imported/crate.gltf-84416b6c5630a5ca18e3f3a849fe682e.scn"]
+source_file="res://buildables/crate.gltf"
+dest_files=["res://.godot/imported/crate.gltf-e6852ee905c2746dc983e31ae1a0a02a.scn"]
 
 [params]
 

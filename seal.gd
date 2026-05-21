@@ -7,6 +7,7 @@ var current_speed := 0.0
 
 var camOverwrite = false
 var canMove = true
+var canInv = true
 
 @export var chest : Marker3D
 

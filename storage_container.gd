@@ -7,9 +7,11 @@ var slots = []
 @export var drawColumns = 2
 @export var drawRows = 2
 
+@export var slotPath : PackedScene = load("res://slot.tscn")
+
 @export var invId = "basic"
 var linkedInv = null
-
+var displayCount = true
 
 signal slotclicked
 
@@ -18,7 +20,7 @@ func _ready() -> void:
 	inventory["obj"] = self
 	Ref.allInvs.append(inventory)
 	slotclicked.connect(slotClicked)
-	var slotScene = load("res://slot.tscn")
+	var slotScene = slotPath
 	for i in slotCount:
 		var newSlot = slotScene.instantiate()
 		slots.append(newSlot)
@@ -28,6 +30,9 @@ func addItem(id, count = 1):
 	var has = false
 	if inventory["items"].get(id):
 		inventory["items"][id]["count"] += count
+		
+		for i in inventory["items"].keys():
+			if i == null: inventory["items"].erase(i)
 	else:
 		var newEntry = {
 			"count": count
@@ -42,6 +47,8 @@ func removeItem(id, count = 1):
 		
 		if inventory["items"][id]["count"] <= 0:
 			inventory["items"].erase(id)
+		for i in inventory["items"].keys():
+			if i == null: inventory["items"].erase(i)
 	else:
 		pass
 
@@ -62,17 +69,24 @@ func drawInv():
 				var d = linkedInv[currSlot]
 				d.slotMover = float(y)
 				d.changeSlot(slots[currSlot].currentItem, inventory)
+				d.displayCount = displayCount
+				slots[currSlot].lunkSlot = d
+				
+				
+				print(displayCount,d.displayCount)
 				Ref.invHolder.add_child(d)
 				d.position = Vector2(
 					(x * spacerX) - ((drawColumns - 1) * spacerX) / 2,
 					(y * spacerY) - ((drawRows - 1) * spacerY) / 2
 				)
 			currSlot += 1
+	refreshSlots()
 
 func clearInv():
 	
 	for i in linkedInv:
-		i.queue_free()
+		if is_instance_valid(i):
+			i.queue_free()
 	linkedInv = null
 
 func slotClicked(slot, inv):

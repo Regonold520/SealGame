@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cdu1whn2wel7g"]
+[gd_scene load_steps=35 format=3 uid="uid://cdu1whn2wel7g"]
 
 [ext_resource type="Script" uid="uid://dx7em3xssj7tv" path="res://seal.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dsvxjnwo522cm" path="res://generation_manager.gd" id="2_0xm2m"]
@@ -15,8 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://ud7bgro6igfi" path="res://models/lift/rope.gltf" id="10_4c57u"]
 [ext_resource type="FontFile" uid="uid://b77gneyev0w80" path="res://Gamer.ttf" id="10_vivmo"]
 [ext_resource type="Script" uid="uid://85pl14doy5uc" path="res://confirm_button.gd" id="11_2cqfq"]
-[ext_resource type="PackedScene" uid="uid://cp1chuk3p82bm" path="res://models/lift/crate.gltf" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://cp1chuk3p82bm" path="res://buildables/crate.gltf" id="12_dg77c"]
 [ext_resource type="Texture2D" uid="uid://d2njatvcyi67j" path="res://sprites/confirmButton.png" id="12_yaehf"]
+[ext_resource type="Script" uid="uid://l8d4cm1pp2vm" path="res://blueprint_confirm.gd" id="13_cegan"]
+[ext_resource type="Script" uid="uid://by0a1jh4vsqf3" path="res://build_manager.gd" id="18_074og"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_h2yge"]
 
@@ -405,6 +407,39 @@ texture = ExtResource("12_yaehf")
 position = Vector2(869, 360)
 scale = Vector2(3.5, 3.5)
 
+[node name="BlueprintPanel" type="Node2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer"]
+visible = false
+position = Vector2(1286, 175)
+
+[node name="Confirm" type="Area2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/BlueprintPanel"]
+position = Vector2(7.0001, 14.3832)
+scale = Vector2(3.5, 3.5)
+script = ExtResource("13_cegan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/BlueprintPanel/Confirm"]
+shape = SubResource("RectangleShape2D_vivmo")
+
+[node name="Texture" type="Sprite2D" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/BlueprintPanel/Confirm"]
+texture = ExtResource("12_yaehf")
+
+[node name="DisplayText" type="RichTextLabel" parent="StartMover/Seal/CamAxis/Node3D/Camera3D/CanvasLayer/BlueprintPanel"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.0
+offset_top = -60.0
+offset_right = 155.0
+offset_bottom = 86.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.180392, 0.811765, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0.0627451, 0.360784, 0.0588235, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("10_vivmo")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]CONSTRUCT"
+
 [node name="Interaction" type="Node3D" parent="StartMover/Seal"]
 script = ExtResource("3_1bvp3")
 
@@ -480,32 +515,38 @@ transform = Transform3D(-0.95882, 0.106853, -0.263148, 0, 0.926529, 0.376224, 0.
 
 [node name="Label3D" type="Label3D" parent="StartMover"]
 transform = Transform3D(0.762228, 0, 0.647309, 0, 1, 0, -0.647309, 0, 0.762228, -4.09819, 1.54909, -5.95483)
+visible = false
 text = "Use WASD to move"
 font_size = 157
 
 [node name="Label3D5" type="Label3D" parent="StartMover"]
 transform = Transform3D(0.762228, 0, 0.647309, 0, 1, 0, -0.647309, 0, 0.762228, -4.09819, 2.31344, -5.95483)
+visible = false
 text = "Click on players chest to enter / exit inventory"
 font_size = 72
 
 [node name="Label3D2" type="Label3D" parent="StartMover"]
 transform = Transform3D(0.606793, 0, -0.79486, 0, 1, 0, 0.79486, 0, 0.606793, 4.77529, 1.54909, -2.6956)
+visible = false
 text = "Click on rocks to break"
 font_size = 157
 
 [node name="Label3D3" type="Label3D" parent="StartMover"]
 transform = Transform3D(-0.988137, 0, 0.153572, 0, 1, 0, -0.153572, 0, -0.988137, 0.417969, 2.36487, 3.88313)
+visible = false
 text = "Click on the lift door to open"
 font_size = 157
 
 [node name="Label3D4" type="Label3D" parent="StartMover"]
 transform = Transform3D(-0.988137, 0, 0.153572, 0, 1, 0, -0.153572, 0, -0.988137, -3.41299, 1.21242, 3.72728)
+visible = false
 modulate = Color(0.633757, 0.633757, 0.633757, 1)
 text = "Click on inventory slots
 to transfer between inventories"
 font_size = 82
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00584149, 0, 0.00240183)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595741, 0)
@@ -515,3 +556,6 @@ skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/Do
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595741, 0)
 shape = SubResource("ConcavePolygonShape3D_074og")
+
+[node name="BuildManager" type="Node3D" parent="."]
+script = ExtResource("18_074og")

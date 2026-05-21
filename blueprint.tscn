@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://vry81y4xl3fr"]
+
+[ext_resource type="Script" uid="uid://nuaq5fdrf4" path="res://blueprint.gd" id="1_cgjvu"]
+[ext_resource type="PackedScene" uid="uid://by1jpy8t56exh" path="res://blueprintSlot.tscn" id="2_3ufgi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ufgi"]
+size = Vector3(1.125, 0.849854, 1.12012)
+
+[node name="Blueprint" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 2
+input_ray_pickable = false
+script = ExtResource("1_cgjvu")
+slotPath = ExtResource("2_3ufgi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.419556, 0)
+shape = SubResource("BoxShape3D_3ufgi")
+
+[node name="Model" type="Node3D" parent="."]

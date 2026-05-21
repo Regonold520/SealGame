@@ -19,8 +19,19 @@ func _process(delta: float) -> void:
 	ray.target_position = origin + normal*5000
 	ray.collision_mask = 3
 	
-	if Input.is_action_just_pressed("Interact"):
-		clicked()
+	if Ref.buildMode:
+		var hitPos = ray.get_collision_point()
+		var tilePos = Ref.genManager.global_to_tile(hitPos)
+		var acPos = Ref.genManager.get_global_tile_pos(
+			tilePos["chunkX"], tilePos["chunkY"],
+			tilePos["tileX"], tilePos["tileY"]-64, tilePos["tileZ"]
+		)
+		if Ref.buildManager.currentDisplay != null:
+			Ref.buildManager.changeDisplayPos(acPos + Vector3(0.5,0,0.5))
+			Ref.buildManager.displayBlockPos = tilePos
+	else:
+		if Input.is_action_just_pressed("Interact"):
+			clicked()
 		
 		
 				

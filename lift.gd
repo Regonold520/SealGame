@@ -6,7 +6,7 @@ var openState = false
 @onready var moveTween = create_tween()
 
 func interact():
-	if animPlayer.is_playing() == false and openState == false:
+	if animPlayer.is_playing() == false and openState == false and Ref.seal.canInv:
 		openState = !openState
 		if openState:
 			open()
@@ -23,12 +23,14 @@ func _ready() -> void:
 	super()
 
 func slotClicked(slot : InventorySlot, inv):
-	if inv["id"] == "player":
-		Ref.getInv("lift")["obj"].addItem(slot.currentItem)
-		Ref.getInv("player")["obj"].removeItem(slot.currentItem)
-	elif inv["id"] == "lift":
-		Ref.getInv("player")["obj"].addItem(slot.currentItem)
-		Ref.getInv("lift")["obj"].removeItem(slot.currentItem)
+	if openState:
+		if inv != null:
+			if inv["id"] == "player":
+				Ref.getInv("lift")["obj"].addItem(slot.currentItem)
+				Ref.getInv("player")["obj"].removeItem(slot.currentItem)
+			elif inv["id"] == "lift":
+				Ref.getInv("player")["obj"].addItem(slot.currentItem)
+				Ref.getInv("lift")["obj"].removeItem(slot.currentItem)
 
 var deltaTimer = 0
 func _process(delta: float) -> void:

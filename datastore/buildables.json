@@ -1,0 +1,7 @@
+{
+	"crate": {
+		"requirements": {
+			"stone": 1
+		}
+	}
+}
